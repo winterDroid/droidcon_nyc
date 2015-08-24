@@ -1,3 +1,21 @@
+apply plugin: 'checkstyle'
+
+task checkstyle(type: Checkstyle) {
+    def project = "${project.rootDir}"
+    source project
+    configFile file(project + "/app/config/checkstyle/checkstyle.xml")
+    configProperties.checkstyleSuppressionsPath = file(project + "/app/config/checkstyle/suppressions.xml").absolutePath
+    classpath = files()
+}
+
+checkstyle {
+    toolVersion = "6.6"
+}
+
+dependencies {
+    checkstyle project(':custom-checkstyle')
+}
+
 android {
     lintOptions {
         // set to true to turn off analysis progress reporting by lint
