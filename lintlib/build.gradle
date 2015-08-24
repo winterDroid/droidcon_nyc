@@ -1,0 +1,66 @@
+apply plugin: 'com.android.library'
+
+repositories {
+    jcenter()
+}
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.0"
+
+    defaultConfig {
+        minSdkVersion 19
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+configurations {
+    lintChecks
+}
+
+dependencies {
+    lintChecks project(path: ":lintrules", configuration: "lintChecks")
+    compile 'com.android.tools.lint:lint-tests:24.3.1'
+}
+
+task copyLintJar(type: Copy){
+    from (configurations.lintChecks) {
+        rename {
+            String fileName ->
+                'lint.jar'
+        }
+    }
+    into 'build/intermediates/lint/'
+}
+
+
+project.afterEvaluate{
+    def compileLintTask = project.tasks.find {it.name == 'compileLint'}
+    compileLintTask.dependsOn(copyLintJar)
+}
+
+// Workaround for issue that custom checks are not picked up since build tools version 1.2.0
+// See: https://code.google.com/p/android/issues/detail?id=174808#c4
+tasks.withType(JavaCompile) { Task task ->
+    task.doFirst {
+        fileTree(project.buildDir) {
+            include '**/jars/lint.jar'
+        }.each { File file ->
+            file.renameTo(new File(file.parentFile.parentFile, file.getName()))
+        }
+    }
+}
