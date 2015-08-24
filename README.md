@@ -1,8 +1,13 @@
-This is a template project which shows how to include custom Lint checks into your Gradle based Android project.
+This is a template project which shows how to include custom Lint and Checkstyle checks into your Gradle based Android project.
 You can execute your Lint checks with:
 
 ```
 ./gradlew lint
+```
+
+The Checkstyle checks can be executed with:
+```
+./gradlew checkstyle
 ```
 
 Besides that it shows how to write tests for the custom checks.
@@ -13,7 +18,4 @@ You can execute our custom test with:
 ```
 
 You can find the information about the talk here:
-http://droidcon.de/session/power-custom-lint-checks
-
-The slides are published here:
-https://speakerdeck.com/winterdroid/the-power-of-custom-lint-checks
+http://droidcon.nyc/2015/dcnyc/25/
