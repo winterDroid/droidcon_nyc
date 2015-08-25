@@ -1,0 +1,18 @@
+apply plugin: 'java'
+
+repositories {
+    mavenCentral()
+    maven {
+        url "http://sevntu-checkstyle.github.com/sevntu.checkstyle/maven2"
+    }
+}
+
+sourceCompatibility = JavaVersion.VERSION_1_7
+targetCompatibility = JavaVersion.VERSION_1_7
+
+dependencies {
+    compile 'com.puppycrawl.tools:checkstyle:6.6'
+
+    testCompile 'junit:junit:4.12'
+    testCompile 'com.github.sevntu.checkstyle:sevntu-checks:1.13.4'
+}
