@@ -34,7 +34,7 @@ configurations {
 
 dependencies {
     lintChecks project(path: ":lintrules", configuration: "lintChecks")
-    compile 'com.android.tools.lint:lint-tests:24.3.1'
+    testCompile 'com.android.tools.lint:lint-tests:24.3.1'
 }
 
 task copyLintJar(type: Copy){

@@ -9,10 +9,5 @@
     <suppress checks="." files="[\\/]gen[\\/]" />
     <suppress checks="." files="[\\/]generated[\\/]" />
     <suppress checks="." files="[\\/]build[\\/]" />
-    <suppress checks="." files="ImageDragViewHelper\.java" />
-    <suppress checks="." files="TouchImageView\.java" />
-    <suppress checks="." files="CursorDragHelper\.java" />
-    <suppress checks="." files="[\\/]\.gradle[\\/]" />
-    <suppress checks="." files="[\\/]gradle[\\/]" />
-    <suppress checks="." files="[\\/]\.idea[\\/]" />
+    <suppress checks="." files="[\\/]custom-checkstyle/src/test/resources[\\/]" />
 </suppressions>
